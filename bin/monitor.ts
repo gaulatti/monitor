@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import * as cdk from 'aws-cdk-lib';
 import { config } from 'dotenv';
-import { MonitorStack } from '../lib/monitor-stack';
+import { MonitorStack } from '../lib';
 
 /**
  * Loads the environment variables from the .env file.
