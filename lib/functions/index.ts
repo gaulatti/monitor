@@ -18,7 +18,7 @@ import { RetentionDays } from 'aws-cdk-lib/aws-logs';
  * The Lambda function is granted read/write permissions to the specified DynamoDB table.
  * Additionally, a CloudWatch rule is created to schedule the Lambda function to run every minute.
  */
-const buildFunctions = (stack: Stack, lastProcessedTable: Table) => {
+const buildFunctions = (stack: Stack) => {
   const chromeLambdaLayer = LayerVersion.fromLayerVersionArn(stack, `${stack.stackName}ChromiumLayer`, process.env.CHROMIUM_LAYER_ARN!);
 
   /**
@@ -31,7 +31,7 @@ const buildFunctions = (stack: Stack, lastProcessedTable: Table) => {
     runtime: Runtime.NODEJS_22_X,
     timeout: Duration.minutes(5),
     environment: {
-      TABLE_NAME: lastProcessedTable.tableName,
+      // TABLE_NAME: lastProcessedTable.tableName,
       GEMINI_CREDENTIALS: process.env.GEMINI_CREDENTIALS!,
       BLUESKY_USERNAME: process.env.BLUESKY_USERNAME!,
       BLUESKY_PASSWORD: process.env.BLUESKY_PASSWORD!,
@@ -48,7 +48,7 @@ const buildFunctions = (stack: Stack, lastProcessedTable: Table) => {
   /**
    * Grant R/W permissions
    */
-  lastProcessedTable.grantReadWriteData(fetchLambda);
+  // lastProcessedTable.grantReadWriteData(fetchLambda);
 
   /**
    * Schedule the Lambda function to run every minute
