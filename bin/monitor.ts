@@ -8,6 +8,11 @@ import { MonitorStack } from '../lib';
  */
 config();
 
+/**
+ * This is it.
+ * https://www.youtube.com/watch?v=q_Xxj2UNB84
+ */
+
 const app = new cdk.App();
 new MonitorStack(app, 'Monitor', {
   /* If you don't specify 'env', this stack will be environment-agnostic.
